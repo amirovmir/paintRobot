@@ -1,2 +1,3 @@
-# Option 2 
-Development of an embedded system in the course "Architecture of information systems". A robot that will paint over/wash the walls and floor
+# Практическая работа 1: Разработка встраиваемой системы
+## Вариант 2 
+Робот, который будет закрашивать/мыть стены и пол
