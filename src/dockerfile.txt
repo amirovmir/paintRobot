@@ -1,0 +1,4 @@
+FROM debian:buster
+RUN mkdir /tmp/221
+COPY state_machine.cpp /tmp/221
+RUN apt-get update && apt-get -y install g++
