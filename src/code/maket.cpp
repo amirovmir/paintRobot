@@ -18,14 +18,14 @@ using namespace std;
 class  CommandStrategy
 {
 public:
-	virtual string getCommand() const = 0;
+	virtual string getCommand() = 0;
 	virtual ~CommandStrategy() {}
 };
 
 class  ConsoleCommandStrategy : public CommandStrategy
 {
 public:
-	virtual string getCommand() const override
+	virtual string getCommand() override
 	{
 		string cmd;
 		cin >> cmd;
@@ -35,6 +35,7 @@ public:
 
 class NetCommandStrategy : public CommandStrategy
 {
+public:
     int sock;
     struct sockaddr_in addr;
     char buf[1024];
@@ -50,7 +51,7 @@ class NetCommandStrategy : public CommandStrategy
             perror("bind");
         }
     }
-	virtual string getCommand() const override
+	virtual string getCommand() override
 	{
 		string cmd;
 		cmd = receive();
@@ -69,7 +70,7 @@ class NetCommandStrategy : public CommandStrategy
 class  OnTestCommandStrategy : public CommandStrategy
 {
 public:
-	virtual string getCommand() const override
+	virtual string getCommand() override
 	{
 		return string("On");
 	}
@@ -184,9 +185,6 @@ void Robot::Wait_cmdEventProcessing(const string& cmd)
 {
 	if (cmd == "Wait_cmd") {
 		cout << "Robot is on. Enter command:\n";
-		string com;
-		cin >> com;
-		processEvent(com);
 	}
 };
 
@@ -217,7 +215,7 @@ void Robot::processEvent(const string& command) {
 
 int main()
 {
-	Robot paintRobot(new ConsoleCommandStrategy());
+	Robot paintRobot(new NetCommandStrategy());
 	paintRobot.setState(EState::Wait_cmd);
 	while (paintRobot.getState() == EState::Wait_cmd)
 	{
