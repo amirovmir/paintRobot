@@ -2,12 +2,17 @@
 
 left to right direction
 
-:Robot: —> (Find spots)
-:Robot: —> (Compare clean/dirty spaces)
-:Robot: —> (Use moving functions to painting on the wall)
-:Robot: —> (Turn on clean device)
-:Robot: —> (Use horizont movements)
-:Robot: —> (Use vertical movements)
-:Robot: —> (Turn off clean device)
+:Robot: --> (Find spots)
+:Robot: --> (Compare clean/dirty spaces)
+:Robot: --> (Use moving functions to painting on the wall)
+:Robot: --> (Turn on clean device)
+:Robot: --> (Use horizont movements)
+:Robot: --> (Use vertical movements)
+:Robot: --> (Turn off clean device)
+
+:User: --> (Switsh on)
+:User: --> (Switsh off)
+:User: --> (Send command)
+:User: --> (Send coordinates)
 
 @enduml
