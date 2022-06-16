@@ -1,0 +1,8 @@
+@startuml
+class Robot
+
+User - Robot: uses >
+Robot *- Camera: uses >
+
+Robot *- CleanDevice: uses >
+@enduml
