@@ -1,25 +1,26 @@
 @startuml
-abstract        GetCommand
-class           NetworkStrategy
-NetworkStrategy : getEvent()
-GetCommand : virtual void getEvent() = 0;
-KeyboardStrategy : getEvent()
-GetCommand <|--  NetworkStrategy
-GetCommand <|--  KeyboardStrategy
-Robot     o--   GetCommand
-class           KeyboardStrategy
-class           Robot{
+abstract        CommandStrategy
+class           NetCommandStrategy
+class           ConsoleCommandStrategy
+CommandStrategy : virtual void getEvent() = 0;
+ConsoleCommandStrategy : getEvent()
+NetCommandStrategy : getEvent()
+CommandStrategy <|--  NetCommandStrategy
+CommandStrategy <|--  ConsoleCommandStrategy
+Robot     o--   CommandStrategy
+
+class Robot 
+{
     EState state;
-    double angle;
-    double distance;
-    GetCommand* robotStrategy;
-    Robot(GetCommand* _strategy): robotStrategy(_strategy) {};
+    int angle;
+    int distance;
+    CommandStrategy* commandprocessor;
+    Robot(GetCommand* pcommandprocessor);
     EState getState();
-    void setState(EState nState);
-    void processEvent(EState state);
-    void rotate(double angle);
-    void moveStraight(double distance);
+    void processEvent(EState n_state);
+    void reverse(int n_angle);
+    void moveStraight(int n_distance);
     void clean();
-    void getCmd();
+    void getCommand();
 }
 @enduml
